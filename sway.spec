@@ -1,6 +1,6 @@
 Name:           sway
 Version:        0.9
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        i3-compatible window manager for Wayland
 Group:          User Interface/X
 License:        MIT
@@ -21,10 +21,8 @@ BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pam-devel
 Requires:       dmenu
-Requires:       rxvt-unicode-256color-ml
-# https://fedorahosted.org/council/ticket/61
-# Suggests:       ImageMagick
-# Suggests:       ffmpeg
+Recommends:     rxvt-unicode-256color-ml
+Recommends:     ImageMagick
 Suggests:       xorg-x11-server-Xwayland
 
 %description
@@ -71,6 +69,11 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Tue Sep 06 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.9-4
+- Do not Require the urxvt shell
+- Rebuild due to a wlc rebuild
+- Add Recommends ImageMagick
+
 * Wed Aug 10 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.9-3
 - Remove some compilation flags that were not needed
 
