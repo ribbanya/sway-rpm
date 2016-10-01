@@ -43,11 +43,12 @@ i3-compatible configuration.
 
 %prep
 %if %{pre_release}
-%autosetup -n %{name}-%{version}-%{pre_release}
+%setup -qn %{name}-%{version}-%{pre_release}
 %else
-%autosetup -n %{name}-%{version}
+%setup -q
 %endif
 mkdir %{_target_platform}
+%patch0 -p1
 
 %build
 pushd %{_target_platform}
