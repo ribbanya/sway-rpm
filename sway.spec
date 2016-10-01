@@ -17,6 +17,7 @@ Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}-%{pre_rel
 %else
 Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}.tar.gz
 %endif
+Patch0:         sway-0.10.rc1-fix_long_unsigned.patch
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(wlc)
 BuildRequires:  wayland-devel
