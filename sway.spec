@@ -1,4 +1,4 @@
-%global pre_release rc1
+%global pre_release rc2
 %global rel 1
 
 Name:           sway
@@ -17,7 +17,6 @@ Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}-%{pre_rel
 %else
 Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}.tar.gz
 %endif
-Patch0:         sway-0.10.rc1-fix_long_unsigned.patch
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(wlc)
 BuildRequires:  wayland-devel
@@ -48,7 +47,6 @@ i3-compatible configuration.
 %setup -q
 %endif
 mkdir %{_target_platform}
-%patch0 -p1
 
 %build
 pushd %{_target_platform}
@@ -86,6 +84,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Tue Oct 04 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.10-0.1.rc2
+- Update to 0.10-rc2
+
 * Wed Sep 28 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.10-0.1.rc1
 - Update to 0.10-rc1
 
