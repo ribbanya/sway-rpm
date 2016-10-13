@@ -1,4 +1,4 @@
-%global pre_release rc2
+%global pre_release rc3
 %global rel 1
 
 Name:           sway
@@ -84,6 +84,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Thu Oct 13 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.10-0.1.rc3
+- Update to 0.10-rc3
+
 * Tue Oct 04 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.10-0.1.rc2
 - Update to 0.10-rc2
 
