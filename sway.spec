@@ -1,22 +1,11 @@
-%global pre_release rc3
-%global rel 1
-
 Name:           sway
 Version:        0.10
-%if %{pre_release}
-Release:        0.%{rel}.%{pre_release}%{?dist}
-%else
-Release:        %{rel}%{?dist}
-%endif
+Release:        1%{?dist}
 Summary:        i3-compatible window manager for Wayland
 Group:          User Interface/X
 License:        MIT
 URL:            https://github.com/SirCmpwn/sway
-%if %{pre_release}
-Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}-%{pre_release}.tar.gz
-%else
 Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}.tar.gz
-%endif
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(wlc)
 BuildRequires:  wayland-devel
@@ -41,11 +30,7 @@ Sway is a tiling window manager supporting Wayland compositor protocol and
 i3-compatible configuration.
 
 %prep
-%if %{pre_release}
-%setup -qn %{name}-%{version}-%{pre_release}
-%else
 %setup -q
-%endif
 mkdir %{_target_platform}
 
 %build
@@ -84,6 +69,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Wed Oct 26 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.10-1
+- Update to 0.10
+
 * Thu Oct 13 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.10-0.1.rc3
 - Update to 0.10-rc3
 
