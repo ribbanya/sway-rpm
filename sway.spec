@@ -1,6 +1,6 @@
 Name:           sway
 Version:        0.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        i3-compatible window manager for Wayland
 Group:          User Interface/X
 License:        MIT
@@ -21,9 +21,10 @@ BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pam-devel
 Requires:       dmenu
+# dmenu requires XWayland, as well as rxvt and many programs they user may want to run
+Requires:       xorg-x11-server-Xwayland
 Recommends:     rxvt-unicode-256color-ml
 Recommends:     ImageMagick
-Suggests:       xorg-x11-server-Xwayland
 
 %description
 Sway is a tiling window manager supporting Wayland compositor protocol and 
@@ -69,6 +70,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Sat Nov 26 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.10-2
+- Require Xwayland instead of just suggesting it, since at the moment is needed by dmenu (and other)
+
 * Wed Oct 26 2016 Fabio Alessandro Locati <fale@redhat.com> - 0.10-1
 - Update to 0.10
 
