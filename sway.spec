@@ -1,4 +1,4 @@
-%global pre rc2
+%global pre rc3
 Name:           sway
 Version:        0.11
 Release:        0.%{pre}%{?dist}
@@ -60,8 +60,7 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %doc README.md
 %dir %{_sysconfdir}/sway
 %config(noreplace) %{_sysconfdir}/sway/config
-%dir %{_sysconfdir}/sway/config.d
-%config(noreplace) %{_sysconfdir}/sway/config.d/security
+%config(noreplace) %{_sysconfdir}/sway/security
 %config %{_sysconfdir}/pam.d/swaylock
 %{_mandir}/man1/sway*.1*
 %{_mandir}/man5/sway*.5*
@@ -76,6 +75,12 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Sun Dec 18 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-0.rc3
+- Update to 0.11-rc3
+
+* Sat Dec 17 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-0.rc2
+- Update to 0.11-rc2
+
 * Sat Nov 26 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.10-2
 - Require Xwayland instead of just suggesting it, since at the moment is needed by dmenu (and other)
 
