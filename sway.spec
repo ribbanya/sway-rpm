@@ -43,8 +43,6 @@ i3-compatible configuration.
 mkdir %{_target_platform}
 
 %build
-export CFLAGS="%{optflags}"
-export LDFLAGS="%{__global_ldflags}"
 pushd %{_target_platform}
 %cmake \
        -DBUILD_SHARED_LIBS:BOOL=OFF \
