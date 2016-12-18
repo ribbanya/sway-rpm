@@ -23,10 +23,15 @@ BuildRequires:  pkgconfig(pango)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pam-devel
+# Dmenu is the default launcher in sway
 Requires:       dmenu
-# dmenu requires XWayland, as well as rxvt and many programs they user may want to run
+# By default the Fedora background is used
+Recommends:     f%{fedora}-backgrounds-base
+# dmenu (as well as rxvt any many others) requires XWayland on Sway
 Requires:       xorg-x11-server-Xwayland
+# Sway binds the terminal shortcut to one specific terminal. In our case urxvtc-ml
 Recommends:     rxvt-unicode-256color-ml
+# ImageMagick is needed to take screenshots with swaygrab
 Recommends:     ImageMagick
 
 %description
@@ -38,6 +43,8 @@ i3-compatible configuration.
 mkdir %{_target_platform}
 
 %build
+export CFLAGS="%{optflags}"
+export LDFLAGS="%{__global_ldflags}"
 pushd %{_target_platform}
 %cmake \
        -DBUILD_SHARED_LIBS:BOOL=OFF \
