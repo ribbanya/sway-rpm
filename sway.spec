@@ -1,13 +1,11 @@
-%global pre rc3
 Name:           sway
 Version:        0.11
-Release:        0.%{pre}%{?dist}
+Release:        1%{?dist}
 Summary:        i3-compatible window manager for Wayland
 Group:          User Interface/X
 License:        MIT
 URL:            https://github.com/SirCmpwn/sway
-Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}-%{pre}.tar.gz
-#Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}.tar.gz
+Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}.tar.gz
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(wlc)
 BuildRequires:  wayland-devel
@@ -39,7 +37,7 @@ Sway is a tiling window manager supporting Wayland compositor protocol and
 i3-compatible configuration.
 
 %prep
-%autosetup -n %{name}-%{version}-%{pre}
+%autosetup
 mkdir %{_target_platform}
 
 %build
@@ -80,6 +78,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Tue Dec 27 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-1
+- Update to 0.11
+
 * Sun Dec 18 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-0.rc3
 - Update to 0.11-rc3
 
