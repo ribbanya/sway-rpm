@@ -1,6 +1,6 @@
 Name:           sway
 Version:        0.11
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        i3-compatible window manager for Wayland
 Group:          User Interface/X
 License:        MIT
@@ -8,6 +8,8 @@ URL:            https://github.com/SirCmpwn/sway
 Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}.tar.gz
 # https://github.com/SirCmpwn/sway/pull/1017
 Patch0:         fix_971.patch
+# https://github.com/SirCmpwn/sway/commit/6a1df17fb7f7bcfa26d825173de4d31b771fd7a6
+Patch1:         fix_LD_LIBRARY_PATH.patch
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(wlc)
 BuildRequires:  wayland-devel
@@ -80,6 +82,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Wed Dec 28 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-3
+- Fix LD_LIBRARY_PATH
+
 * Wed Dec 28 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-2
 - Fix bug #971 with backported patch
 
