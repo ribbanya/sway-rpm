@@ -1,6 +1,6 @@
 Name:           sway
 Version:        0.11
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        i3-compatible window manager for Wayland
 Group:          User Interface/X
 License:        MIT
@@ -72,7 +72,7 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_mandir}/man1/sway*.1*
 %{_mandir}/man5/sway*.5*
 %{_mandir}/man7/sway*.7*
-%{_bindir}/sway
+%caps(cap_sys_ptrace=eip) %{_bindir}/sway
 %{_bindir}/swaybar
 %{_bindir}/swaybg
 %{_bindir}/swaygrab
@@ -82,6 +82,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Thu Dec 29 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-4
+- Set ptrace capability for sway
+
 * Wed Dec 28 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-3
 - Fix LD_LIBRARY_PATH
 
