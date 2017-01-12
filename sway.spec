@@ -1,6 +1,6 @@
 Name:           sway
 Version:        0.11
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        i3-compatible window manager for Wayland
 Group:          User Interface/X
 License:        MIT
@@ -10,6 +10,8 @@ Source0:        https://github.com/SirCmpwn/%{name}/archive/%{version}.tar.gz
 Patch0:         fix_971.patch
 # https://github.com/SirCmpwn/sway/commit/6a1df17fb7f7bcfa26d825173de4d31b771fd7a6
 Patch1:         fix_LD_LIBRARY_PATH.patch
+# https://github.com/SirCmpwn/sway/issues/1008
+Patch2:         fix_1008.patch
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(wlc)
 BuildRequires:  wayland-devel
@@ -82,6 +84,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/zsh/site-functions/_sway*
 
 %changelog
+* Thu Jan 12 2017 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-5
+- Fix bug #1008 with backported patch
+
 * Thu Dec 29 2016 Fabio Alessandro Locati <fale@fedoraproject.org> - 0.11-4
 - Set ptrace capability for sway
 
