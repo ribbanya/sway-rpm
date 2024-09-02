@@ -1,15 +1,13 @@
-%global tag     1.9
+%global commit0 980a4e02113789d0cca94aa023557c6f6e87ec73
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           sway
-Version:        1.9
-Release:        1%{?dist}
+Version:        1.10
+Release:        1.git%{shortcommit0}%{?dist}
 Summary:        i3-compatible window manager for Wayland
 License:        MIT
 URL:            https://github.com/swaywm/sway
-Source0:        %{url}/releases/download/%{tag}/%{name}-%{tag}.tar.gz
-Source1:        %{url}/releases/download/%{tag}/%{name}-%{tag}.tar.gz.sig
-# 0FDE7BE0E88F5E48: emersion <contact@emersion.fr>
-Source2:        https://emersion.fr/.well-known/openpgpkey/hu/dj3498u4hyyarh35rkjfnghbjxug6b19#/gpgkey-0FDE7BE0E88F5E48.gpg
+Source0:        %{url}/archive/%{commit0}.tar.gz
 
 # Minimal configuration file for headless or buildroot use
 Source100:      config.minimal
@@ -129,8 +127,7 @@ Wallpaper collection provided with Sway
 
 
 %prep
-%{gpgverify} --keyring='%{SOURCE2}' --signature='%{SOURCE1}' --data='%{SOURCE0}'
-%autosetup -N -n %{name}-%{tag}
+%autosetup -n %{name}-%{commit0}
 # apply unconditional patches
 %autopatch -p1 -M99
 # apply conditional patches
@@ -183,6 +180,9 @@ install -d -m755 -pv %{buildroot}%{_sysconfdir}/sway/config.d
 %{_datadir}/backgrounds/sway
 
 %changelog
+* Mon Sep 02 2024 Robin Avery <robin@ribbanya.dev> - 1.10-1.git980a4e0
+- Update to HEAD
+
 * Sat Feb 24 2024 Aleksei Bavshin <alebastr@fedoraproject.org> - 1.9-1
 - Update to 1.9
 
